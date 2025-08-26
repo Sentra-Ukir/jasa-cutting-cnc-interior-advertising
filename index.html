@@ -1,280 +1,463 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zaki CNC Cutting – Interior & Advertising</title>
-  <meta name="description" content="Jasa cutting CNC untuk interior & advertising. Presisi, cepat, dan transparan. Workshop & galeri hasil kerja, kontak admin/designer, peta lokasi." />
-  <style>
-    :root{
-      --gold:#d4af37;         /* Emas klasik */
-      --gold-2:#b9932c;       /* Variasi lebih gelap */
-      --bg:#0b0b0c;           /* Latar gelap elegan */
-      --fg:#f6f6f6;           /* Teks utama */
-      --muted:#c9c9c9;        /* Teks sekunder */
-      --card:#111214;         /* Kartu */
-      --border:#232428;       /* Garis */
-      --ok:#27ae60;           /* Aksen sukses */
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 16px;
-      --container: 1180px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;line-height:1.6}
-    a{color:var(--gold);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:100%;max-width:var(--container);margin-inline:auto;padding:0 20px}
-    .btn{display:inline-flex;gap:.5rem;align-items:center;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1b1b1b;font-weight:700;border:none;padding:.9rem 1.15rem;border-radius:999px;box-shadow:var(--shadow);cursor:pointer}
-    .btn.secondary{background:transparent;color:var(--fg);border:1px solid var(--gold)}
-    .btn:active{transform:translateY(1px)}
-    header{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .brand{display:flex;align-items:center;gap:.75rem}
-    .logo{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:radial-gradient(60% 60% at 30% 25%,#fff8 0,#0000 60%), linear-gradient(160deg,var(--gold),var(--gold-2));color:#1a1a1a;font-weight:900;letter-spacing:.1em;box-shadow:var(--shadow)}
-    .menu{display:flex;gap:1.1rem}
-    .menu a{color:var(--fg);font-weight:600;opacity:.9}
-    .menu a:hover{color:var(--gold)}
-    .hamburger{display:none;background:none;border:0;color:var(--fg);font-size:28px}
-    @media (max-width: 860px){.menu{display:none}.hamburger{display:block}}
+import React from "react";
+import { motion } from "framer-motion";
+import { Menu, X, Phone, Mail, MapPin, Wrench, Scissors, Ruler, Camera, Video, Facebook, Instagram, Youtube, Send, ChevronUp, Layers } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-    .hero{position:relative;isolation:isolate}
-    .hero .bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;filter:grayscale(.1) contrast(1.1)}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75));z-index:-1}
-    .hero .content{padding:92px 0 72px;display:grid;gap:1.25rem}
-    .kicker{color:var(--gold);text-transform:uppercase;font-weight:800;letter-spacing:.2em}
-    h1{margin:0;font-size:clamp(28px,4vw,48px);line-height:1.15}
-    .lead{color:var(--muted);max-width:820px}
-    .cta{display:flex;gap:.75rem;flex-wrap:wrap}
+// =============================================================
+//  WEBSITE PROFIL USAHA – CUTTING CNC INTERIOR & ADVERTISING
+//  Single-file React component. TailwindCSS + shadcn/ui + framer-motion
+//  Cara pakai cepat:
+//  1) Edit data pada konstanta `site` di bawah.
+//  2) Ganti gambar/banner/logo dengan file Anda (URL atau import).
+//  3) Ganti URL Google Maps embed pada site.maps.embed.
+//  4) Deploy ke Vercel/Netlify atau export ke HTML statis via tooling.
+// =============================================================
 
-    section{padding:64px 0;border-top:1px solid var(--border)}
-    h2{margin:0 0 10px;font-size:clamp(22px,3vw,32px)}
-    .sub{margin:0 0 26px;color:var(--muted)}
+const site = {
+  name: "Sentra Ukir Jasa Cutting CNC • Interior • Advertising",
+  tagline: "Jasa Cutting CNC • Interior • Advertising",
+  description:
+    "Kami melayani pemotongan CNC akurat untuk kebutuhan interior, eksterior, dan periklanan—dari satuan hingga proyek skala besar.",
+  logoText: "ZCNC",
+  hero: {
+    banner:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+    overlay: true,
+    ctaPrimary: {
+      label: "Chat WhatsApp",
+      href: "https://wa.me/6281234567890",
+    },
+    ctaSecondary: {
+      label: "Lihat Galeri",
+      href: "#galeri",
+    },
+  },
+  contacts: {
+    admin: {
+      name: "Admin",
+      phone: "+62 812-3456-7890",
+      wa: "https://wa.me/6281234567890",
+      email: "admin@zakicnc.co.id",
+    },
+    designer: {
+      name: "Designer",
+      phone: "+62 813-9876-5432",
+      wa: "https://wa.me/6281398765432",
+      email: "design@zakicnc.co.id",
+    },
+  },
+  address: {
+    line1: "Jl. Contoh No. 123, Kecamatan, Kota, Provinsi 12345",
+    note: "Workshop buka Senin–Sabtu, 09.00–18.00",
+  },
+  maps: {
+    // Dapatkan URL embed dari Google Maps: Buka lokasi ➜ Bagikan ➜ Sematkan Peta ➜ Salin HTML ➜ ambil nilai src-nya.
+    embed:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.832912159839!2d106.816666!3d-6.200000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e5eebb!2sMonas!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid",
+  },
+  services: [
+    {
+      icon: <Wrench className="w-6 h-6" />,
+      title: "Cutting CNC Router",
+      desc: "Pemotongan presisi untuk MDF, PVC, akrilik, alumunium komposit, dan lainnya.",
+    },
+    {
+      icon: <Scissors className="w-6 h-6" />,
+      title: "Laser Cutting & Engraving",
+      desc: "Pola detail, ukir logo/teks pada akrilik, kayu, leather, dan material tipis.",
+    },
+    {
+      icon: <Ruler className="w-6 h-6" />,
+      title: "Desain & File Prep",
+      desc: "Bantuan vector/3D, optimasi nesting & path agar biaya material lebih efisien.",
+    },
+    {
+      icon: <Layers className="w-6 h-6" />,
+      title: "Produksi Signage",
+      desc: "Huruf timbul, neonflex, ACP signage, panel cutting, dan display promosi.",
+    },
+  ],
+  materials: [
+    "MDF / HDF / Multiplex",
+    "Akrilik (Acrylic)",
+    "PVC / Foamboard",
+    "Aluminum Composite Panel (ACP)",
+    "PVC Board / Sintra",
+    "Polycarbonate / PETG",
+    "Kayu & Plywood",
+  ],
+  workshop: {
+    photos: [
+      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop",
+    ],
+    blurb:
+      "Workshop kami dilengkapi mesin CNC router bed besar, laser, dan area finishing untuk memastikan lead time cepat dan kualitas konsisten.",
+  },
+  gallery: {
+    photos: [
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509529711801-deac231925ac?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop",
+    ],
+    videos: [
+      // Contoh: video YouTube/Vimeo – gunakan embed URL
+      "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    ],
+  },
+  socials: [
+    { name: "Instagram", href: "https://instagram.com/yourhandle", icon: <Instagram className="w-5 h-5" /> },
+    { name: "Facebook", href: "https://facebook.com/yourpage", icon: <Facebook className="w-5 h-5" /> },
+    { name: "YouTube", href: "https://youtube.com/@yourchannel", icon: <Youtube className="w-5 h-5" /> },
+  ],
+};
 
-    .grid{display:grid;gap:20px}
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-    @media (max-width: 980px){.grid-4{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width: 680px){.grid-3,.grid-2,.grid-4{grid-template-columns:1fr}}
+const nav = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Bahan", href: "#bahan" },
+  { label: "Workshop", href: "#workshop" },
+  { label: "Galeri", href: "#galeri" },
+  { label: "Kontak", href: "#kontak" },
+];
 
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .chip{display:inline-flex;align-items:center;gap:.6rem;background:#1a1b1f;border:1px solid var(--border);padding:.6rem .8rem;border-radius:999px;font-size:.92rem}
-    .chip svg{width:18px;height:18px;fill:var(--gold)}
-
-    .list{display:grid;gap:12px}
-    .list li{display:flex;gap:10px;align-items:flex-start}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:.58rem}
-
-    .gallery .ph{aspect-ratio:4/3;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0f1013}
-    .gallery iframe{width:100%;height:100%;border:0}
-
-    .contact-grid{display:grid;gap:20px;grid-template-columns:1.1fr .9fr}
-    @media (max-width: 880px){.contact-grid{grid-template-columns:1fr}}
-
-    .form input,.form textarea{width:100%;background:#0f1013;border:1px solid var(--border);border-radius:14px;padding:12px 14px;color:var(--fg)}
-    .form textarea{min-height:120px}
-
-    footer{border-top:1px solid var(--border);padding:36px 0;color:var(--muted)}
-    .socials{display:flex;gap:12px;flex-wrap:wrap}
-
-    .floating-top{position:fixed;bottom:18px;right:18px;border-radius:999px;border:1px solid var(--gold);background:#0e0f12;color:var(--gold);padding:.7rem .9rem;cursor:pointer;box-shadow:var(--shadow)}
-
-    /* Simple mobile menu */
-    .mobile{display:none;padding:14px 20px;border-top:1px solid var(--border)}
-    .mobile a{display:block;padding:10px 0;color:var(--fg)}
-    .show{display:block}
-  </style>
-</head>
-<body>
-  <!-- HEADER / NAV -->
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-label="Logo">ZC</div>
-        <strong>Zaki CNC Cutting</strong>
+function Logo() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="bg-white/10 text-white rounded-2xl px-3 py-1 font-semibold tracking-widest shadow-sm">
+        {site.logoText}
       </div>
-      <nav class="menu" aria-label="Navigasi utama">
-        <a href="#beranda">Beranda</a>
-        <a href="#tentang">Tentang</a>
-        <a href="#layanan">Layanan</a>
-        <a href="#bahan">Bahan</a>
-        <a href="#workshop">Workshop</a>
-        <a href="#galeri">Galeri</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
-      <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+      <span className="text-white/90 font-medium hidden sm:block">{site.name}</span>
     </div>
-    <div id="mobile" class="mobile container">
-      <a href="#beranda" onclick="toggleMenu()">Beranda</a>
-      <a href="#tentang" onclick="toggleMenu()">Tentang</a>
-      <a href="#layanan" onclick="toggleMenu()">Layanan</a>
-      <a href="#bahan" onclick="toggleMenu()">Bahan</a>
-      <a href="#workshop" onclick="toggleMenu()">Workshop</a>
-      <a href="#galeri" onclick="toggleMenu()">Galeri</a>
-      <a href="#kontak" onclick="toggleMenu()">Kontak</a>
-    </div>
-  </header>
+  );
+}
 
-  <!-- HERO -->
-  <section id="beranda" class="hero">
-    <div class="bg" aria-hidden="true"></div>
-    <div class="container content">
-      <span class="kicker">Jasa Cutting CNC • Interior • Advertising</span>
-      <h1>Presisi Emas untuk Visual Bisnis Anda</h1>
-      <p class="lead">Kami melayani pemotongan CNC akurat untuk MDF, akrilik, ACP, dan material lainnya. Cocok untuk signage, huruf timbul, panel interior, display, hingga custom part. Estimasi harga cepat via WhatsApp.</p>
-      <div class="cta">
-        <a class="btn" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat WhatsApp</a>
-        <a class="btn secondary" href="#galeri">Lihat Galeri</a>
+function Header() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur supports-backdrop-blur:bg-white/60 bg-white/70 border-b">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="h-16 flex items-center justify-between">
+          <Logo />
+          <nav className="hidden md:flex items-center gap-6">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="text-sm font-medium text-gray-700 hover:text-gray-900">
+                {n.label}
+              </a>
+            ))}
+            <a href={site.hero.ctaPrimary.href} className="ml-2">
+              <Button className="rounded-2xl shadow">{site.hero.ctaPrimary.label}</Button>
+            </a>
+          </nav>
+          <button className="md:hidden p-2" onClick={() => setOpen((s) => !s)} aria-label="Toggle menu">
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+      {open && (
+        <div className="md:hidden border-t bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-3 grid gap-2">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="py-2 text-sm font-medium text-gray-700">
+                {n.label}
+              </a>
+            ))}
+            <a href={site.hero.ctaPrimary.href} className="pt-1">
+              <Button className="w-full rounded-2xl">{site.hero.ctaPrimary.label}</Button>
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
 
-  <!-- TENTANG -->
-  <section id="tentang">
-    <div class="container">
-      <h2>Tentang Kami</h2>
-      <p class="sub">Profesional, cepat, dan transparan dalam biaya serta timeline.</p>
-      <div class="grid grid-2">
-        <div class="card">
-          <p>Kami membantu brand, arsitek, kontraktor, dan UMKM mewujudkan ide menjadi produk nyata. Dengan standar presisi ±0,2 mm dan proses quality check berlapis, hasil akhir rapi dan konsisten.</p>
-          <ul class="list" style="margin-top:16px">
-            <li><span class="dot"></span><span>Toleransi presisi hingga ±0,2 mm</span></li>
-            <li><span class="dot"></span><span>Konsultasi file & optimasi nesting</span></li>
-            <li><span class="dot"></span><span>Estimasi cepat via WhatsApp</span></li>
-            <li><span class="dot"></span><span>Garansi kualitas produksi</span></li>
+function Hero() {
+  return (
+    <section id="beranda" className="relative min-h-[88vh] flex items-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${site.hero.banner})` }}
+      />
+      <div className={`absolute inset-0 ${site.hero.overlay ? "bg-black/50" : ""}`} />
+      <div className="relative mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-32">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          className="max-w-3xl text-white">
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight drop-shadow-md">{site.tagline}</h1>
+          <p className="mt-4 text-white/90 text-base sm:text-lg">{site.description}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={site.hero.ctaPrimary.href}>
+              <Button size="lg" className="rounded-2xl shadow-lg">{site.hero.ctaPrimary.label}</Button>
+            </a>
+            <a href={site.hero.ctaSecondary.href}>
+              <Button size="lg" variant="secondary" className="rounded-2xl">{site.hero.ctaSecondary.label}</Button>
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Section({ id, title, subtitle, children }) {
+  return (
+    <section id={id} className="py-16 sm:py-24 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h2>
+          {subtitle && <p className="mt-2 text-gray-600 max-w-3xl">{subtitle}</p>}
+        </div>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <Section id="layanan" title="Layanan" subtitle="Solusi lengkap untuk kebutuhan cutting dan produksi visual Anda.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {site.services.map((s, i) => (
+          <Card key={i} className="rounded-2xl shadow-sm hover:shadow-md transition">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-base">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gray-100">
+                  {s.icon}
+                </span>
+                {s.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-600">{s.desc}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Materials() {
+  return (
+    <Section id="bahan" title="Bahan Cutting" subtitle="Material yang kami kerjakan (ketebalan & spesifikasi menyesuaikan).">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {site.materials.map((m, idx) => (
+          <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl border bg-white">
+            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center"><Scissors className="w-4 h-4" /></div>
+            <span className="text-sm text-gray-800">{m}</span>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function About() {
+  return (
+    <Section id="tentang" title="Tentang Kami" subtitle="Profesional, cepat, dan transparan dalam biaya serta timeline.">
+      <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <p className="text-gray-700 leading-relaxed">
+            {site.description} Kami membantu brand, arsitek, kontraktor, dan UMKM
+            mewujudkan ide menjadi produk nyata dengan kualitas konsisten dan tepat waktu.
+          </p>
+          <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-gray-700">
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Toleransi presisi hingga ±0.2 mm</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Konsultasi file & optimasi gratis</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Estimasi harga cepat via WA</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Garansi kualitas produksi</li>
           </ul>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1200&auto=format&fit=crop" alt="Foto Workshop" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LAYANAN -->
-  <section id="layanan">
-    <div class="container">
-      <h2>Layanan</h2>
-      <p class="sub">Solusi lengkap untuk kebutuhan cutting dan produksi visual.</p>
-      <div class="grid grid-4">
-        <div class="card"><span class="chip">🛠️ Cutting CNC Router</span><p style="margin-top:10px">Pemotongan presisi untuk MDF, PVC, akrilik, ACP, dan lainnya.</p></div>
-        <div class="card"><span class="chip">✂️ Laser Cutting & Engraving</span><p style="margin-top:10px">Pola detail, ukir logo/teks pada akrilik, kayu, dan material tipis.</p></div>
-        <div class="card"><span class="chip">📐 Desain & File Prep</span><p style="margin-top:10px">Bantuan vector/3D, optimasi nesting & path agar biaya efisien.</p></div>
-        <div class="card"><span class="chip">🧩 Produksi Signage</span><p style="margin-top:10px">Huruf timbul, neonflex, ACP signage, panel cutting, display.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BAHAN -->
-  <section id="bahan">
-    <div class="container">
-      <h2>Bahan Cutting</h2>
-      <p class="sub">Material yang kami kerjakan (ketebalan & spesifikasi menyesuaikan).</p>
-      <div class="grid grid-3">
-        <div class="card">MDF / HDF / Multiplex</div>
-        <div class="card">Akrilik (Acrylic)</div>
-        <div class="card">PVC / Foamboard</div>
-        <div class="card">Aluminium Composite Panel (ACP)</div>
-        <div class="card">PVC Board / Sintra</div>
-        <div class="card">Polycarbonate / PETG</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKSHOP -->
-  <section id="workshop">
-    <div class="container">
-      <h2>Workshop</h2>
-      <p class="sub">Fasilitas dan area kerja untuk produksi yang efisien.</p>
-      <div class="grid grid-2">
-        <div class="card"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop" alt="Workshop 1" /></div>
-        <div class="card"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop" alt="Workshop 2" /></div>
-      </div>
-      <p style="margin-top:16px;color:var(--muted)">Mesin CNC bed besar, laser, dan area finishing untuk lead time cepat & kualitas konsisten.</p>
-    </div>
-  </section>
-
-  <!-- GALERI -->
-  <section id="galeri">
-    <div class="container">
-      <h2>Galeri Foto & Video</h2>
-      <p class="sub">Cuplikan hasil pekerjaan kami.</p>
-      <div class="grid grid-3 gallery">
-        <div class="card ph"><img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop" alt="Galeri 1"/></div>
-        <div class="card ph"><img src="https://images.unsplash.com/photo-1509529711801-deac231925ac?q=80&w=1200&auto=format&fit=crop" alt="Galeri 2"/></div>
-        <div class="card ph"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Galeri 3"/></div>
-        <div class="card ph"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop" alt="Galeri 4"/></div>
-        <div class="card ph"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" alt="Galeri 5"/></div>
-        <div class="card ph"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Galeri" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAK & MAPS -->
-  <section id="kontak">
-    <div class="container">
-      <h2>Kontak & Alamat</h2>
-      <p class="sub">Hubungi kami untuk konsultasi desain, estimasi biaya, dan penjadwalan produksi.</p>
-      <div class="contact-grid">
-        <div class="card">
-          <h3 style="margin:0 0 12px">Kontak Admin</h3>
-          <p>📞 +62 812-3456-7890</p>
-          <p>✉️ admin@zakicnc.co.id</p>
-          <a class="btn" href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp Admin</a>
-          <hr style="border:0;border-top:1px solid var(--border);margin:18px 0"/>
-          <h3 style="margin:0 0 12px">Kontak Designer</h3>
-          <p>📞 +62 813-9876-5432</p>
-          <p>✉️ design@zakicnc.co.id</p>
-          <a class="btn" href="https://wa.me/6281398765432" target="_blank" rel="noopener">WhatsApp Designer</a>
-          <hr style="border:0;border-top:1px solid var(--border);margin:18px 0"/>
-          <h3 style="margin:0 0 12px">Form Pesan Cepat</h3>
-          <form class="form" onsubmit="submitForm(event)">
-            <input aria-label="Nama" placeholder="Nama" required />
-            <div style="height:8px"></div>
-            <input aria-label="No. WhatsApp" placeholder="No. WhatsApp" required />
-            <div style="height:8px"></div>
-            <input type="email" aria-label="Email" placeholder="Email" required />
-            <div style="height:8px"></div>
-            <textarea aria-label="Pesan" placeholder="Pesan" required></textarea>
-            <div style="height:12px"></div>
-            <button class="btn" type="submit">Kirim Pesan</button>
-          </form>
-        </div>
-        <div class="card" style="padding:0;overflow:hidden">
-          <iframe title="Lokasi Workshop" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.832912159839!2d106.816666!3d-6.200000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e5eebb%3A0x0!2sMonas!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" width="100%" height="450" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <div style="padding:14px">
-            <strong>Alamat Workshop</strong>
-            <p style="margin:6px 0 0">Jl. Contoh No. 123, Kecamatan, Kota, Provinsi 12345<br/>Buka Senin–Sabtu, 09.00–18.00</p>
+        <div className="relative rounded-3xl overflow-hidden shadow-lg">
+          <img src={site.workshop.photos[0]} alt="Workshop" className="w-full h-full object-cover" />
+          <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+            <p className="text-sm">{site.workshop.blurb}</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </Section>
+  );
+}
 
-  <footer>
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div class="logo" style="width:34px;height:34px;border-radius:10px">ZC</div>
-        <div>
-          <strong style="color:var(--fg)">Zaki CNC Cutting</strong>
-          <div style="font-size:.92rem">© <span id="year"></span> Semua hak cipta.</div>
+function Workshop() {
+  return (
+    <Section id="workshop" title="Workshop" subtitle="Fasilitas dan area kerja untuk produksi yang efisien.">
+      <div className="grid md:grid-cols-2 gap-6">
+        {site.workshop.photos.map((src, i) => (
+          <div key={i} className="rounded-3xl overflow-hidden border">
+            <img src={src} alt={`Workshop ${i + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-gray-700">{site.workshop.blurb}</p>
+    </Section>
+  );
+}
+
+function Gallery() {
+  return (
+    <Section id="galeri" title="Galeri Foto & Video" subtitle="Cuplikan hasil pekerjaan kami.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {site.gallery.photos.map((src, idx) => (
+          <div key={idx} className="aspect-[4/3] rounded-3xl overflow-hidden border bg-gray-50">
+            <img src={src} alt={`Galeri ${idx + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      {site.gallery.videos.length > 0 && (
+        <div className="mt-8 grid md:grid-cols-2 gap-6">
+          {site.gallery.videos.map((v, i) => (
+            <div key={i} className="aspect-video rounded-3xl overflow-hidden border">
+              <iframe
+                className="w-full h-full"
+                src={v}
+                title={`Video ${i + 1}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  );
+}
+
+function Contact() {
+  return (
+    <Section id="kontak" title="Kontak & Alamat" subtitle="Hubungi kami untuk konsultasi desain, estimasi biaya, dan penjadwalan produksi.">
+      <div className="grid lg:grid-cols-2 gap-10">
+        {/* Kontak Cards */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[site.contacts.admin, site.contacts.designer].map((c, i) => (
+            <Card key={i} className="rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-base">{i === 0 ? "Kontak Admin" : "Kontak Designer"}</CardTitle>
+              </CardHeader>
+              <CardContent className="grid gap-3 text-sm">
+                <div className="flex items-center gap-2 text-gray-700"><Phone className="w-4 h-4"/> {c.phone}</div>
+                <a href={c.wa} className="inline-flex w-fit"><Button size="sm" className="rounded-xl">WhatsApp</Button></a>
+                <div className="flex items-center gap-2 text-gray-700"><Mail className="w-4 h-4"/> {c.email}</div>
+              </CardContent>
+            </Card>
+          ))}
+          <Card className="rounded-2xl sm:col-span-2">
+            <CardHeader>
+              <CardTitle className="text-base">Alamat Workshop</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-3 text-sm">
+              <div className="flex items-start gap-2 text-gray-700"><MapPin className="w-4 h-4 mt-1"/> <span>{site.address.line1}</span></div>
+              <p className="text-gray-600">{site.address.note}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Maps */}
+        <div className="rounded-3xl overflow-hidden border min-h-[360px]">
+          <iframe
+            src={site.maps.embed}
+            className="w-full h-full min-h-[360px]"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Lokasi Workshop"
+          />
         </div>
       </div>
-      <div class="socials">
-        <a href="https://instagram.com/yourhandle" aria-label="Instagram">Instagram</a>
-        <a href="https://facebook.com/yourpage" aria-label="Facebook">Facebook</a>
-        <a href="https://youtube.com/@yourchannel" aria-label="YouTube">YouTube</a>
+
+      {/* Simple contact form – optional */}
+      <div className="mt-10">
+        <Card className="rounded-2xl">
+          <CardHeader>
+            <CardTitle className="text-base">Form Pesan Cepat</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form
+              className="grid sm:grid-cols-2 gap-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Terima kasih! Pesan Anda sudah terkirim.");
+              }}
+            >
+              <input required placeholder="Nama" className="border rounded-xl px-4 py-3" />
+              <input required type="tel" placeholder="No. WhatsApp" className="border rounded-xl px-4 py-3" />
+              <input required type="email" placeholder="Email" className="border rounded-xl px-4 py-3 sm:col-span-2" />
+              <textarea required placeholder="Pesan" rows={4} className="border rounded-xl px-4 py-3 sm:col-span-2" />
+              <div className="sm:col-span-2"><Button className="rounded-2xl"><Send className="w-4 h-4 mr-2"/>Kirim</Button></div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t bg-gray-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-8 items-center">
+        <div className="text-gray-700">
+          <div className="flex items-center gap-2">
+            <div className="bg-gray-900 text-white rounded-2xl px-3 py-1 font-semibold tracking-widest">{site.logoText}</div>
+            <span className="font-medium">{site.name}</span>
+          </div>
+          <p className="mt-3 text-sm text-gray-600 max-w-sm">{site.tagline}</p>
+        </div>
+        <div className="flex gap-4">
+          {site.socials.map((s, i) => (
+            <a key={i} href={s.href} className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white border">{s.icon}</span>
+              {s.name}
+            </a>
+          ))}
+        </div>
+        <div className="text-sm text-gray-600 md:text-right">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+      </div>
+    </footer>
+  );
+}
+
+function BackToTop() {
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-6 right-6 p-3 rounded-full bg-gray-900 text-white shadow-lg"
+      aria-label="Kembali ke atas"
+    >
+      <ChevronUp />
+    </button>
+  );
+}
+
+export default function WebsiteProfilCNC() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Materials />
+        <Workshop />
+        <Gallery />
+        <Contact />
+      </main>
+      <Footer />
+      <BackToTop />
     </div>
-  </footer>
-
-  <button class="floating-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">▲</button>
-
-  <script>
-    // Tahun dinamis & interaksi simpel
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function toggleMenu(){document.getElementById('mobile').classList.toggle('show');}
-    function submitForm(e){e.preventDefault();alert('Terima kasih! Pesan Anda sudah terkirim.');e.target.reset();}
-  </script>
-</body>
-</html>
+  );
+}
