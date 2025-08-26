@@ -9,80 +9,69 @@
       font-family: Arial, sans-serif;
       margin: 0; padding: 0;
       line-height: 1.8;
-      background: #f4f4f4;
-      color: #333;
+      background: #111; /* hitam elegan */
+      color: #f8f8f8;
     }
     header {
       background: url('banner-background.jpg') no-repeat center center/cover;
-      color: white;
+      color: #FFD700;
       text-align: center;
       padding: 100px 20px;
     }
-    header img {
-      max-width: 150px;
-    }
-    header h1 {
-      font-size: 48px;
-      margin: 20px 0 10px 0;
-    }
-    header h3 {
-      font-size: 24px;
-      font-weight: normal;
-    }
-    nav {
-      background: #222;
-      padding: 15px;
-      text-align: center;
-    }
+    header img { max-width: 150px; }
+    header h1 { font-size: 48px; margin: 20px 0 10px 0; }
+    header h3 { font-size: 24px; font-weight: normal; }
+
+    nav { background: #000; padding: 15px; text-align: center; }
     nav a {
-      color: white;
+      color: #FFD700;
       margin: 0 20px;
       text-decoration: none;
       font-weight: bold;
       font-size: 16px;
     }
-    nav a:hover {
-      color: #ffcc00;
-    }
+    nav a:hover { color: white; }
+
     section {
-      padding: 60px 40px;
-      max-width: 1200px;
-      margin: auto;
-      background: white;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      padding: 60px 40px; max-width: 1200px;
+      margin: auto; background: #1b1b1b;
+      margin-bottom: 20px; border-radius: 8px;
+      box-shadow: 0px 2px 8px rgba(255,215,0,0.4);
     }
     h2 {
-      border-bottom: 3px solid #ffcc00;
+      border-bottom: 3px solid #FFD700;
       padding-bottom: 10px;
       margin-bottom: 20px;
+      color: #FFD700;
     }
-    ul li {
-      margin-bottom: 10px;
-    }
+    ul li { margin-bottom: 10px; }
+
     .gallery img {
-      width: 250px;
-      margin: 10px;
-      border-radius: 8px;
-      transition: 0.3s;
+      width: 220px; margin: 10px;
+      border-radius: 8px; transition: 0.3s;
+      border: 2px solid #FFD700;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+    .gallery img:hover { transform: scale(1.05); }
+
     iframe {
-      width: 100%;
-      height: 350px;
-      border: none;
+      width: 100%; height: 350px;
+      border: 2px solid #FFD700;
       border-radius: 8px;
     }
+
     footer {
-      background: #333;
-      color: #fff;
+      background: #000;
+      color: #FFD700;
       text-align: center;
       padding: 30px;
       font-size: 14px;
+      border-top: 2px solid #FFD700;
     }
+
+    .testimonial, .faq { margin-bottom: 25px; }
+    .testimonial p { font-style: italic; color: #f0f0f0; }
+    .testimonial b { color: #FFD700; }
+    .faq h4 { margin-bottom: 8px; color: #FFD700; }
   </style>
 </head>
 <body>
@@ -98,101 +87,103 @@
 <nav>
   <a href="#tentang">Tentang Kami</a>
   <a href="#layanan">Layanan</a>
-  <a href="#bahan">Bahan Cutting</a>
+  <a href="#bahan">Bahan</a>
   <a href="#workshop">Workshop</a>
   <a href="#galeri">Galeri</a>
+  <a href="#faq">FAQ</a>
+  <a href="#testimoni">Testimoni</a>
   <a href="#kontak">Kontak</a>
 </nav>
 
 <!-- TENTANG -->
 <section id="tentang">
   <h2>Tentang Kami</h2>
-  <p>
-    <b>Sentra Ukir Jayapura</b> adalah usaha jasa cutting CNC yang berlokasi di Jayapura. 
-    Kami hadir untuk memenuhi kebutuhan masyarakat dan perusahaan dalam pembuatan berbagai produk interior, eksterior, hingga media promosi advertising yang berkualitas tinggi.  
-  </p>
-  <p>
-    Dengan tenaga kerja yang berpengalaman, mesin CNC modern, serta desain yang selalu update, 
-    kami memastikan setiap pesanan pelanggan dikerjakan dengan detail, rapi, dan sesuai kebutuhan. 
-    Kepercayaan pelanggan adalah prioritas kami, dan kepuasan pelanggan adalah kebanggaan kami.  
-  </p>
-  <p>
-    Kami telah mengerjakan berbagai proyek mulai dari rumah tinggal, kantor, restoran, hotel, 
-    hingga pameran. Sentra Ukir Jayapura siap menjadi mitra terbaik Anda dalam mewujudkan karya desain interior dan media promosi yang menarik.
-  </p>
+  <p><b>Sentra Ukir Jayapura</b> adalah penyedia jasa cutting CNC modern yang melayani kebutuhan interior, eksterior, dan advertising di wilayah Jayapura dan Papua secara umum.</p>
+  <p>Kami berdiri sejak 2018 dengan tujuan menghadirkan solusi desain interior kreatif, fungsional, dan estetis. Sejak awal berdiri, kami telah dipercaya menangani ratusan proyek dari berbagai skala: rumah tinggal, apartemen, toko retail, restoran, café, kantor, hingga hotel berbintang.</p>
 </section>
 
 <!-- LAYANAN -->
 <section id="layanan">
   <h2>Layanan Kami</h2>
   <ul>
-    <li>Jasa Cutting CNC untuk interior rumah, apartemen, kantor, dan bangunan komersial</li>
-    <li>Pembuatan partisi, plafon, hiasan dinding, dekorasi pintu, dan jendela</li>
-    <li>Media advertising seperti neon box, letter sign, huruf timbul, logo 3D, dan papan nama usaha</li>
-    <li>Pembuatan pola ukiran custom sesuai desain pelanggan</li>
-    <li>Proyek besar seperti dekorasi hotel, restoran, café, dan panggung acara</li>
+    <li>Jasa Cutting CNC untuk interior rumah, apartemen, kantor, dan gedung komersial.</li>
+    <li>Pembuatan partisi, plafon, hiasan dinding, backdrop, dan dekorasi pintu.</li>
+    <li>Media advertising: neon box, letter sign, huruf timbul, logo 3D, papan nama usaha.</li>
+    <li>Pembuatan pola ukiran custom sesuai desain pelanggan.</li>
   </ul>
 </section>
 
-<!-- BAHAN CUTTING -->
+<!-- BAHAN -->
 <section id="bahan">
-  <h2>Bahan Cutting yang Kami Gunakan</h2>
-  <p>Kami menyediakan berbagai pilihan bahan cutting sesuai kebutuhan dan budget pelanggan:</p>
+  <h2>Bahan Cutting</h2>
   <ul>
     <li>MDF (Medium Density Fiberboard)</li>
     <li>Acrylic berbagai ketebalan dan warna</li>
     <li>PVC Sheet</li>
-    <li>Tripleks</li>
-    <li>Kayu lapis dan material lainnya</li>
+    <li>Tripleks / Kayu lapis</li>
+    <li>Aluminium Composite Panel (ACP)</li>
   </ul>
 </section>
 
 <!-- WORKSHOP -->
 <section id="workshop">
-  <h2>Foto Workshop</h2>
-  <img src="workshop.jpg" alt="Workshop Sentra Ukir Jayapura" width="100%">
-  <p>
-    Workshop kami dilengkapi dengan peralatan CNC modern yang mendukung hasil cutting presisi tinggi. 
-    Lokasi workshop mudah dijangkau sehingga memudahkan pelanggan untuk datang melihat langsung proses produksi.
-  </p>
-
-  <h3>Alamat Workshop:</h3>
+  <h2>Workshop</h2>
+  <img src="workshop.jpg" alt="Workshop" width="100%">
+  <p>Workshop kami dilengkapi mesin CNC presisi tinggi dengan standar modern.</p>
+  <h3>Alamat:</h3>
   <p>Jl. Contoh No.123, Jayapura, Papua</p>
-
   <h3>Peta Lokasi:</h3>
   <iframe src="https://www.google.com/maps/embed?..."></iframe>
 </section>
 
 <!-- GALERI -->
 <section id="galeri">
-  <h2>Galeri Hasil Pekerjaan</h2>
-  <p>Berikut beberapa hasil karya terbaik kami dalam berbagai proyek interior dan advertising:</p>
+  <h2>Galeri</h2>
   <div class="gallery">
-    <img src="hasil1.jpg" alt="Hasil Cutting 1">
-    <img src="hasil2.jpg" alt="Hasil Cutting 2">
-    <img src="hasil3.jpg" alt="Hasil Cutting 3">
-    <img src="hasil4.jpg" alt="Hasil Cutting 4">
-    <img src="hasil5.jpg" alt="Hasil Cutting 5">
+    <img src="hasil1.jpg" alt="Hasil 1">
+    <img src="hasil2.jpg" alt="Hasil 2">
+    <img src="hasil3.jpg" alt="Hasil 3">
+    <img src="hasil4.jpg" alt="Hasil 4">
   </div>
-  <h3>Video Dokumentasi Pekerjaan:</h3>
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h2>FAQ</h2>
+  <div class="faq">
+    <h4>Apakah bisa custom desain?</h4>
+    <p>Ya, kami menerima desain custom sesuai kebutuhan Anda.</p>
+  </div>
+  <div class="faq">
+    <h4>Berapa lama pengerjaan rata-rata?</h4>
+    <p>Rata-rata 3–7 hari kerja tergantung jumlah dan tingkat kesulitan.</p>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni">
+  <h2>Testimoni</h2>
+  <div class="testimonial">
+    <p>"Hasil cutting rapi dan memuaskan, sangat profesional!"</p>
+    <b>- Andi, Jayapura</b>
+  </div>
+  <div class="testimonial">
+    <p>"Pelayanan cepat, harga sesuai kualitas, recommended!"</p>
+    <b>- Maria, Abepura</b>
+  </div>
 </section>
 
 <!-- KONTAK -->
 <section id="kontak">
-  <h2>Kontak Kami</h2>
-  <p>Hubungi kami untuk konsultasi, pemesanan, atau informasi lebih lanjut:</p>
-  <p>📞 Admin: <b>081344644999</b></p>
-  <p>📞 Designer: <b>08114901407</b></p>
-  <p>📧 Email: sentraukirjayapura@gmail.com</p>
-  <p>Instagram: <a href="#">@sentraukirjayapura</a></p>
-  <p>Facebook: <a href="#">Sentra Ukir Jayapura</a></p>
+  <h2>Kontak</h2>
+  <p>📞 Admin: <b style="color:#FFD700;">081344644999</b></p>
+  <p>📞 Designer: <b style="color:#FFD700;">08114901407</b></p>
+  <p>📧 Email: <span style="color:#FFD700;">sentraukirjayapura@gmail.com</span></p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2025 Sentra Ukir Jayapura | Jasa Cutting CNC Interior & Advertising</p>
-  <p>Desain oleh Tim Sentra Ukir Jayapura</p>
 </footer>
 
 </body>
