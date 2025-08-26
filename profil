@@ -1,0 +1,463 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Menu, X, Phone, Mail, MapPin, Wrench, Scissors, Ruler, Camera, Video, Facebook, Instagram, Youtube, Send, ChevronUp, Layers } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+// =============================================================
+//  WEBSITE PROFIL USAHA – CUTTING CNC INTERIOR & ADVERTISING
+//  Single-file React component. TailwindCSS + shadcn/ui + framer-motion
+//  Cara pakai cepat:
+//  1) Edit data pada konstanta `site` di bawah.
+//  2) Ganti gambar/banner/logo dengan file Anda (URL atau import).
+//  3) Ganti URL Google Maps embed pada site.maps.embed.
+//  4) Deploy ke Vercel/Netlify atau export ke HTML statis via tooling.
+// =============================================================
+
+const site = {
+  name: "Sentra Ukir Jasa Cutting CNC • Interior • Advertising",
+  tagline: "Jasa Cutting CNC • Interior • Advertising",
+  description:
+    "Kami melayani pemotongan CNC akurat untuk kebutuhan interior, eksterior, dan periklanan—dari satuan hingga proyek skala besar.",
+  logoText: "ZCNC",
+  hero: {
+    banner:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+    overlay: true,
+    ctaPrimary: {
+      label: "Chat WhatsApp",
+      href: "https://wa.me/6281234567890",
+    },
+    ctaSecondary: {
+      label: "Lihat Galeri",
+      href: "#galeri",
+    },
+  },
+  contacts: {
+    admin: {
+      name: "Admin",
+      phone: "+62 812-3456-7890",
+      wa: "https://wa.me/6281234567890",
+      email: "admin@zakicnc.co.id",
+    },
+    designer: {
+      name: "Designer",
+      phone: "+62 813-9876-5432",
+      wa: "https://wa.me/6281398765432",
+      email: "design@zakicnc.co.id",
+    },
+  },
+  address: {
+    line1: "Jl. Contoh No. 123, Kecamatan, Kota, Provinsi 12345",
+    note: "Workshop buka Senin–Sabtu, 09.00–18.00",
+  },
+  maps: {
+    // Dapatkan URL embed dari Google Maps: Buka lokasi ➜ Bagikan ➜ Sematkan Peta ➜ Salin HTML ➜ ambil nilai src-nya.
+    embed:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.832912159839!2d106.816666!3d-6.200000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e5eebb!2sMonas!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid",
+  },
+  services: [
+    {
+      icon: <Wrench className="w-6 h-6" />,
+      title: "Cutting CNC Router",
+      desc: "Pemotongan presisi untuk MDF, PVC, akrilik, alumunium komposit, dan lainnya.",
+    },
+    {
+      icon: <Scissors className="w-6 h-6" />,
+      title: "Laser Cutting & Engraving",
+      desc: "Pola detail, ukir logo/teks pada akrilik, kayu, leather, dan material tipis.",
+    },
+    {
+      icon: <Ruler className="w-6 h-6" />,
+      title: "Desain & File Prep",
+      desc: "Bantuan vector/3D, optimasi nesting & path agar biaya material lebih efisien.",
+    },
+    {
+      icon: <Layers className="w-6 h-6" />,
+      title: "Produksi Signage",
+      desc: "Huruf timbul, neonflex, ACP signage, panel cutting, dan display promosi.",
+    },
+  ],
+  materials: [
+    "MDF / HDF / Multiplex",
+    "Akrilik (Acrylic)",
+    "PVC / Foamboard",
+    "Aluminum Composite Panel (ACP)",
+    "PVC Board / Sintra",
+    "Polycarbonate / PETG",
+    "Kayu & Plywood",
+  ],
+  workshop: {
+    photos: [
+      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop",
+    ],
+    blurb:
+      "Workshop kami dilengkapi mesin CNC router bed besar, laser, dan area finishing untuk memastikan lead time cepat dan kualitas konsisten.",
+  },
+  gallery: {
+    photos: [
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509529711801-deac231925ac?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop",
+    ],
+    videos: [
+      // Contoh: video YouTube/Vimeo – gunakan embed URL
+      "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    ],
+  },
+  socials: [
+    { name: "Instagram", href: "https://instagram.com/yourhandle", icon: <Instagram className="w-5 h-5" /> },
+    { name: "Facebook", href: "https://facebook.com/yourpage", icon: <Facebook className="w-5 h-5" /> },
+    { name: "YouTube", href: "https://youtube.com/@yourchannel", icon: <Youtube className="w-5 h-5" /> },
+  ],
+};
+
+const nav = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Bahan", href: "#bahan" },
+  { label: "Workshop", href: "#workshop" },
+  { label: "Galeri", href: "#galeri" },
+  { label: "Kontak", href: "#kontak" },
+];
+
+function Logo() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="bg-white/10 text-white rounded-2xl px-3 py-1 font-semibold tracking-widest shadow-sm">
+        {site.logoText}
+      </div>
+      <span className="text-white/90 font-medium hidden sm:block">{site.name}</span>
+    </div>
+  );
+}
+
+function Header() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur supports-backdrop-blur:bg-white/60 bg-white/70 border-b">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="h-16 flex items-center justify-between">
+          <Logo />
+          <nav className="hidden md:flex items-center gap-6">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="text-sm font-medium text-gray-700 hover:text-gray-900">
+                {n.label}
+              </a>
+            ))}
+            <a href={site.hero.ctaPrimary.href} className="ml-2">
+              <Button className="rounded-2xl shadow">{site.hero.ctaPrimary.label}</Button>
+            </a>
+          </nav>
+          <button className="md:hidden p-2" onClick={() => setOpen((s) => !s)} aria-label="Toggle menu">
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="md:hidden border-t bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-3 grid gap-2">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="py-2 text-sm font-medium text-gray-700">
+                {n.label}
+              </a>
+            ))}
+            <a href={site.hero.ctaPrimary.href} className="pt-1">
+              <Button className="w-full rounded-2xl">{site.hero.ctaPrimary.label}</Button>
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="beranda" className="relative min-h-[88vh] flex items-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${site.hero.banner})` }}
+      />
+      <div className={`absolute inset-0 ${site.hero.overlay ? "bg-black/50" : ""}`} />
+      <div className="relative mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-32">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          className="max-w-3xl text-white">
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight drop-shadow-md">{site.tagline}</h1>
+          <p className="mt-4 text-white/90 text-base sm:text-lg">{site.description}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={site.hero.ctaPrimary.href}>
+              <Button size="lg" className="rounded-2xl shadow-lg">{site.hero.ctaPrimary.label}</Button>
+            </a>
+            <a href={site.hero.ctaSecondary.href}>
+              <Button size="lg" variant="secondary" className="rounded-2xl">{site.hero.ctaSecondary.label}</Button>
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Section({ id, title, subtitle, children }) {
+  return (
+    <section id={id} className="py-16 sm:py-24 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h2>
+          {subtitle && <p className="mt-2 text-gray-600 max-w-3xl">{subtitle}</p>}
+        </div>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <Section id="layanan" title="Layanan" subtitle="Solusi lengkap untuk kebutuhan cutting dan produksi visual Anda.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {site.services.map((s, i) => (
+          <Card key={i} className="rounded-2xl shadow-sm hover:shadow-md transition">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-base">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gray-100">
+                  {s.icon}
+                </span>
+                {s.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-600">{s.desc}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Materials() {
+  return (
+    <Section id="bahan" title="Bahan Cutting" subtitle="Material yang kami kerjakan (ketebalan & spesifikasi menyesuaikan).">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {site.materials.map((m, idx) => (
+          <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl border bg-white">
+            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center"><Scissors className="w-4 h-4" /></div>
+            <span className="text-sm text-gray-800">{m}</span>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function About() {
+  return (
+    <Section id="tentang" title="Tentang Kami" subtitle="Profesional, cepat, dan transparan dalam biaya serta timeline.">
+      <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <p className="text-gray-700 leading-relaxed">
+            {site.description} Kami membantu brand, arsitek, kontraktor, dan UMKM
+            mewujudkan ide menjadi produk nyata dengan kualitas konsisten dan tepat waktu.
+          </p>
+          <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-gray-700">
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Toleransi presisi hingga ±0.2 mm</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Konsultasi file & optimasi gratis</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Estimasi harga cepat via WA</li>
+            <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"/> Garansi kualitas produksi</li>
+          </ul>
+        </div>
+        <div className="relative rounded-3xl overflow-hidden shadow-lg">
+          <img src={site.workshop.photos[0]} alt="Workshop" className="w-full h-full object-cover" />
+          <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+            <p className="text-sm">{site.workshop.blurb}</p>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function Workshop() {
+  return (
+    <Section id="workshop" title="Workshop" subtitle="Fasilitas dan area kerja untuk produksi yang efisien.">
+      <div className="grid md:grid-cols-2 gap-6">
+        {site.workshop.photos.map((src, i) => (
+          <div key={i} className="rounded-3xl overflow-hidden border">
+            <img src={src} alt={`Workshop ${i + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-gray-700">{site.workshop.blurb}</p>
+    </Section>
+  );
+}
+
+function Gallery() {
+  return (
+    <Section id="galeri" title="Galeri Foto & Video" subtitle="Cuplikan hasil pekerjaan kami.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {site.gallery.photos.map((src, idx) => (
+          <div key={idx} className="aspect-[4/3] rounded-3xl overflow-hidden border bg-gray-50">
+            <img src={src} alt={`Galeri ${idx + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      {site.gallery.videos.length > 0 && (
+        <div className="mt-8 grid md:grid-cols-2 gap-6">
+          {site.gallery.videos.map((v, i) => (
+            <div key={i} className="aspect-video rounded-3xl overflow-hidden border">
+              <iframe
+                className="w-full h-full"
+                src={v}
+                title={`Video ${i + 1}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
+  );
+}
+
+function Contact() {
+  return (
+    <Section id="kontak" title="Kontak & Alamat" subtitle="Hubungi kami untuk konsultasi desain, estimasi biaya, dan penjadwalan produksi.">
+      <div className="grid lg:grid-cols-2 gap-10">
+        {/* Kontak Cards */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[site.contacts.admin, site.contacts.designer].map((c, i) => (
+            <Card key={i} className="rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-base">{i === 0 ? "Kontak Admin" : "Kontak Designer"}</CardTitle>
+              </CardHeader>
+              <CardContent className="grid gap-3 text-sm">
+                <div className="flex items-center gap-2 text-gray-700"><Phone className="w-4 h-4"/> {c.phone}</div>
+                <a href={c.wa} className="inline-flex w-fit"><Button size="sm" className="rounded-xl">WhatsApp</Button></a>
+                <div className="flex items-center gap-2 text-gray-700"><Mail className="w-4 h-4"/> {c.email}</div>
+              </CardContent>
+            </Card>
+          ))}
+          <Card className="rounded-2xl sm:col-span-2">
+            <CardHeader>
+              <CardTitle className="text-base">Alamat Workshop</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-3 text-sm">
+              <div className="flex items-start gap-2 text-gray-700"><MapPin className="w-4 h-4 mt-1"/> <span>{site.address.line1}</span></div>
+              <p className="text-gray-600">{site.address.note}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Maps */}
+        <div className="rounded-3xl overflow-hidden border min-h-[360px]">
+          <iframe
+            src={site.maps.embed}
+            className="w-full h-full min-h-[360px]"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Lokasi Workshop"
+          />
+        </div>
+      </div>
+
+      {/* Simple contact form – optional */}
+      <div className="mt-10">
+        <Card className="rounded-2xl">
+          <CardHeader>
+            <CardTitle className="text-base">Form Pesan Cepat</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form
+              className="grid sm:grid-cols-2 gap-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Terima kasih! Pesan Anda sudah terkirim.");
+              }}
+            >
+              <input required placeholder="Nama" className="border rounded-xl px-4 py-3" />
+              <input required type="tel" placeholder="No. WhatsApp" className="border rounded-xl px-4 py-3" />
+              <input required type="email" placeholder="Email" className="border rounded-xl px-4 py-3 sm:col-span-2" />
+              <textarea required placeholder="Pesan" rows={4} className="border rounded-xl px-4 py-3 sm:col-span-2" />
+              <div className="sm:col-span-2"><Button className="rounded-2xl"><Send className="w-4 h-4 mr-2"/>Kirim</Button></div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t bg-gray-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-8 items-center">
+        <div className="text-gray-700">
+          <div className="flex items-center gap-2">
+            <div className="bg-gray-900 text-white rounded-2xl px-3 py-1 font-semibold tracking-widest">{site.logoText}</div>
+            <span className="font-medium">{site.name}</span>
+          </div>
+          <p className="mt-3 text-sm text-gray-600 max-w-sm">{site.tagline}</p>
+        </div>
+        <div className="flex gap-4">
+          {site.socials.map((s, i) => (
+            <a key={i} href={s.href} className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white border">{s.icon}</span>
+              {s.name}
+            </a>
+          ))}
+        </div>
+        <div className="text-sm text-gray-600 md:text-right">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+      </div>
+    </footer>
+  );
+}
+
+function BackToTop() {
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-6 right-6 p-3 rounded-full bg-gray-900 text-white shadow-lg"
+      aria-label="Kembali ke atas"
+    >
+      <ChevronUp />
+    </button>
+  );
+}
+
+export default function WebsiteProfilCNC() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Materials />
+        <Workshop />
+        <Gallery />
+        <Contact />
+      </main>
+      <Footer />
+      <BackToTop />
+    </div>
+  );
+}
